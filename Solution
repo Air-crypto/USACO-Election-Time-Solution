@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class one {
+    static class City{
+            int index;
+            int value;
+            int value2;
+        }
+    
+    static class comp implements Comparator <City> { 
+        public int compare(City c1, City c2) {
+            if (c1.value>c2.value) {//it will sort the array by value1 in decreasing order 
+                return -1;
+            }
+            return 1;
+        }
+    }
+    
+    
+    public static void main (String [] args) {
+        Scanner s = new Scanner(System.in);
+        
+        int N = s.nextInt();
+        int K = s.nextInt();
+        
+        City cityArr[] = new City[N]; //****create an array
+            //read the inputs
+        for (int i = 0; i < N; i++) {
+            cityArr[i] = new City(); //****every item of this array should be an object type as well
+            cityArr[i].value = s.nextInt();
+            cityArr[i].value2 = s.nextInt();
+            cityArr[i].index = i + 1;
+            
+        }
+        
+        Arrays.sort(cityArr, new comp());
+        
+        int rambo [] = new int [3];
+        
+        rambo[0] = 0;
+        rambo[1] = 0;
+        
+        for (int i = 0; i < K; i++) {
+            if (rambo[0] < cityArr[i].value2) {
+                rambo[0] = cityArr[i].value2;
+                rambo[1] = cityArr[i].index;
+            }
+        }
+        
+        
+        System.out.println(rambo[1]);
+        
+        s.close();
+        
+    }
+}
